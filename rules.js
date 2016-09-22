@@ -1,13 +1,13 @@
-var React = require('react-native');
-var {
+import React from 'react-native';
+import {
   Image,
   Text,
   View,
-} = React;
-var SimpleMarkdown = require('simple-markdown');
-var _ = require('lodash');
+} from 'react-native';
+import SimpleMarkdown from 'simple-markdown';
+import _ from 'lodash';
 
-module.exports = function(styles) {
+export default function rules(styles) {
   return {
     autolink: {
       react: function(node, output, state) {
@@ -113,7 +113,7 @@ module.exports = function(styles) {
             bullet = React.createElement(Text, { style: styles.listItemNumber  }, (i + 1) + '. ');
           }
           else {
-            bullet = React.createElement(Text, { style: styles.listItemBullet }, '\u2022 ');
+            bullet = React.createElement(Text, { style: styles.listItemBullet, key: i }, '\u2022 ');
           }
           return React.createElement(View, {
             key: i,
