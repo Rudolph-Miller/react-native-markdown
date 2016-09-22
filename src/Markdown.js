@@ -121,10 +121,12 @@ export default class Markdown extends Component {
     style: styles
   }
 
-  componentWillMount() {
-    var mergedStyles = Object.assign({}, styles, this.props.style);
+  constructor(props) {
+    super(props);
+
+    var mergedStyles = _.merge({}, styles, props.style);
     var rules = Rules(mergedStyles);
-    rules = Object.assign({}, SimpleMarkdown.defaultRules, rules);
+    rules = _.merge({}, SimpleMarkdown.defaultRules, rules);
 
     var parser = SimpleMarkdown.parserFor(rules);
     this.parse = function(source) {

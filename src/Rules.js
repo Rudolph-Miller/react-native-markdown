@@ -1,4 +1,4 @@
-import React from 'react-native';
+import React from 'react';
 import {
   Image,
   Text,
@@ -7,7 +7,7 @@ import {
 import SimpleMarkdown from 'simple-markdown';
 import _ from 'lodash';
 
-export default function rules(styles) {
+export default function Rules(styles) {
   return {
     autolink: {
       react: function(node, output, state) {

@@ -142,27 +142,25 @@ var styles = {
 var Markdown = function (_Component) {
   _inherits(Markdown, _Component);
 
-  function Markdown() {
+  function Markdown(props) {
     _classCallCheck(this, Markdown);
 
-    return _possibleConstructorReturn(this, (Markdown.__proto__ || Object.getPrototypeOf(Markdown)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Markdown.__proto__ || Object.getPrototypeOf(Markdown)).call(this, props));
+
+    var mergedStyles = _lodash2.default.merge({}, styles, props.style);
+    var rules = (0, _Rules2.default)(mergedStyles);
+    rules = _lodash2.default.merge({}, _simpleMarkdown2.default.defaultRules, rules);
+
+    var parser = _simpleMarkdown2.default.parserFor(rules);
+    _this.parse = function (source) {
+      var blockSource = source + '\n\n';
+      return parser(blockSource, { inline: false });
+    };
+    _this.renderer = _simpleMarkdown2.default.reactFor(_simpleMarkdown2.default.ruleOutput(rules, 'react'));
+    return _this;
   }
 
   _createClass(Markdown, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      var mergedStyles = Object.assign({}, styles, this.props.style);
-      var rules = (0, _Rules2.default)(mergedStyles);
-      rules = Object.assign({}, _simpleMarkdown2.default.defaultRules, rules);
-
-      var parser = _simpleMarkdown2.default.parserFor(rules);
-      this.parse = function (source) {
-        var blockSource = source + '\n\n';
-        return parser(blockSource, { inline: false });
-      };
-      this.renderer = _simpleMarkdown2.default.reactFor(_simpleMarkdown2.default.ruleOutput(rules, 'react'));
-    }
-  }, {
     key: 'render',
     value: function render() {
       var child = _lodash2.default.isArray(this.props.children) ? this.props.children.join('') : this.props.children;
