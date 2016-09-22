@@ -138,6 +138,10 @@ export default class Markdown extends Component {
     var child = _.isArray(this.props.children)
       ? this.props.children.join('') : this.props.children;
     var tree = this.parse(child);
-    return <View style={[styles.view, this.props.style.view]}>{this.renderer(tree)}</View>;
+    return (
+      <View style={[styles.view, this.props.style.view]}>
+        {this.renderer(tree)}
+      </View>
+    );
   }
 }

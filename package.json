@@ -6,8 +6,19 @@
   },
   "version": "0.1.1",
   "description": "A component for rendering Markdown in React Native",
-  "main": "Markdown.js",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "node_modules/.bin/babel src --out-dir js",
+    "build": "node_modules/.bin/babel src --out-dir js"
+  },
   "author": "Lochlan Wansbrough <lochie@live.com> (http://lwansbrough.com)",
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-1": "^6.13.0"
+  },
   "dependencies": {
     "lodash": "^3.6.0",
     "simple-markdown": "git://github.com/lwansbrough/simple-markdown.git"
